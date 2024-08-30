@@ -18,7 +18,5 @@ namespace Project.Core.Domain
         public int DeletedUser { get; set; }
 
 
-        public virtual ICollection<ProductCategory> productCategories { get; set; }
-        public virtual ICollection<ProductPicture> ProductPictures { get; set; }
     }
 }

@@ -21,7 +21,6 @@ namespace Project.Core.Domain
         public int CustomerID { get; set; }
         public virtual Customer Customer { get; set; }
 
-        public virtual ICollection<OrderItem> OrderItems { get; set; }
 
     }
 }

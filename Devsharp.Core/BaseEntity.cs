@@ -1,11 +1,10 @@
-﻿using Project.Core.Interface;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Project.Core
 {
-    public abstract class BaseEntity : IEntity, IDateEntity, IUserModifer
+    public abstract class BaseEntity 
     {
         public int ID { get; set; }
         public DateTime CreateDate { get; set; }
