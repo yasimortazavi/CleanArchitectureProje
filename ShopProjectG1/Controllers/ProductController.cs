@@ -55,6 +55,10 @@ namespace ShopProjectG1.Controllers
         [HttpPost]
         public IActionResult Register([FromForm]ProductModel model)
         {
+            //if (!ModelState.IsValid)
+            //{ 
+            //    return BadRequest(ModelState);
+            //}
             if (model.ID == 0)
             {
                 model.ID = Products.Max(x => x.ID) + 1;
