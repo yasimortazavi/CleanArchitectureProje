@@ -12,6 +12,11 @@ namespace Devsharp.Data
         {
             optionsBuilder.UseSqlServer("Data source=.; initial Catalog=ShopCleanArhitector;integrated security = true;");
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Customer>().Property(x => x.FirstName).HasMaxLength(50).IsRequired();
+        
+        }
         public DbSet<Customer>Customers { get; set; }
     }
 }
