@@ -18,7 +18,7 @@ namespace Devsharp.Data.Migrations
                     CreateUser = table.Column<int>(nullable: false),
                     EditUser = table.Column<int>(nullable: false),
                     FirstName = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(maxLength: 50, nullable: false),
                     NationalCode = table.Column<string>(nullable: true),
                     UserName = table.Column<string>(nullable: true),
                     Password = table.Column<string>(nullable: true),
