@@ -19,6 +19,6 @@ namespace Devsharp.Data
             //modelBuilder.Entity<Customer>().Property(x => x.FirstName).HasMaxLength(50).IsRequired();
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
         }
-        public DbSet<Customer>Customers { get; set; }
+     //   public DbSet<Customer>Customers { get; set; }
     }
 }
