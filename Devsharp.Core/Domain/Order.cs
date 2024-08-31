@@ -1,4 +1,4 @@
-﻿
+﻿using Project.Core.Interface;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -21,6 +21,7 @@ namespace Project.Core.Domain
         public int CustomerID { get; set; }
         public virtual Customer Customer { get; set; }
 
+        public virtual ICollection<OrderItem> OrderItems { get; set; }
 
     }
 }

@@ -1,11 +1,11 @@
-﻿
+﻿using Project.Core.Interface;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Project.Core.Domain
 {
-    public class Product : BaseEntity
+    public class Product : BaseEntity, IDeleted
     {
         public string ProductName { get; set; }
         public int Price { get; set; }
@@ -18,5 +18,7 @@ namespace Project.Core.Domain
         public int DeletedUser { get; set; }
 
 
+        public virtual ICollection<ProductCategory> productCategories { get; set; }
+        public virtual ICollection<ProductPicture> ProductPictures { get; set; }
     }
 }

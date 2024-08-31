@@ -1,11 +1,11 @@
-﻿
+﻿using Project.Core.Interface;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Project.Core.Domain
 {
-    public class Picture:BaseEntity
+    public class Picture:BaseEntity,IDeleted
     {
         public string  Title { get; set; }
         public string VirtualPath { get; set; }
