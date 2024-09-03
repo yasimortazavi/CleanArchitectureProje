@@ -1,26 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Project.Core.Domain
+namespace Devsharp.Core.Domian
 {
+    /// <summary>
+    /// Represents an order status enumeration
+    /// </summary>
     public enum OrderStatus
     {
         /// <summary>
-        /// 
+        /// Pending
         /// </summary>
         Pending = 10,
         /// <summary>
-        /// 
+        /// Processing
         /// </summary>
         Processing = 20,
         /// <summary>
-        /// 
+        /// Complete
         /// </summary>
-        Cancelled = 30,
+        Complete = 30,
         /// <summary>
-        /// 
+        /// Cancelled
         /// </summary>
-        Complated = 40
+        Cancelled = 40
     }
 }

@@ -1,9 +1,9 @@
-﻿using Project.Core.Interface;
+﻿using Devsharp.Core.Interface;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Project.Core
+namespace Devsharp.Core
 {
     public class BaseRelation :IEntity,  IUserModifer
     {

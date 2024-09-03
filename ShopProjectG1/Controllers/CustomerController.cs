@@ -2,7 +2,7 @@
 using Devsharp.Framework;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Project.Core.Domain;
+using Devsharp.Core.Domain;
 
 namespace ShopProjectG1.Controllers
 {

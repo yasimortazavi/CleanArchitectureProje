@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Project.Core.Domain;
+using Devsharp.Core.Domain;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Project.Data.Mapping
+namespace Devsharp.Data.Mapping
 {
     public class OrderItemMap : IEntityTypeConfiguration<OrderItem>
     {

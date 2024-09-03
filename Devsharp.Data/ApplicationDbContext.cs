@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Project.Core.Domain;
-using Project.Data.Mapping;
+using Devsharp.Core.Domain;
+using Devsharp.Data.Mapping;
 using System;
 using System.Collections.Generic;
 using System.Text;

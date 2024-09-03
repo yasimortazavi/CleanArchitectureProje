@@ -1,11 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Devsharp.Core.Domian;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Project.Core.Domain;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Project.Data.Mapping
+namespace Devsharp.Data.Mapping
 {
     public class CustomerMap : IEntityTypeConfiguration<Customer>
     {

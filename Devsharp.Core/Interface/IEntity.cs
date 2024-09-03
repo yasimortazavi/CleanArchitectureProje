@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Project.Core.Interface
+namespace Devsharp.Core.Interface
 {
    public interface IEntity
     {
