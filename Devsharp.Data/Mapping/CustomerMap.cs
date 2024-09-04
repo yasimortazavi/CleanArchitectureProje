@@ -18,7 +18,7 @@ namespace Devsharp.Data.Mapping
             builder.HasKey("ID");
             //builder.Property(p => p.CreateDate).ValueGeneratedOnAdd().HasDefaultValue(DateTime.Now);
             /// Conflit Version
-            builder.Property(p => p.TimeStamp).IsRowVersion();
+            builder.Property(p => p.Timestamp).IsRowVersion();
 
             builder.HasComment("جدول مشتریان");
             // کلید دوم درواقع کلید نیست اما مقدار آن یکتا است
@@ -28,7 +28,6 @@ namespace Devsharp.Data.Mapping
             //builder.Property(p => p.Password).HasMaxLength(12);
             //builder.Property(p => p.FirstName).HasMaxLength(50).IsRequired(true).HasDefaultValue("sasan");
              
-            builder.Property(p => p.TimeStamp).IsRowVersion();
             builder.HasIndex(p => new { p.FirstName,p.LastName});
             //////////////////////////******************/////////////////////////////
             builder.Property(p => p.CreateDate).ValueGeneratedOnAdd().HasDefaultValue(DateTime.Now);

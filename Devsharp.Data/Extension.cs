@@ -35,5 +35,15 @@ namespace Devsharp.Data
                  .Select(x => x.FullName).ToList();
 
         }
+
+        public static void PluralizeTable(this ModelBuilder modelBuilder)
+        {
+            Pluralize.NET.Pluralizer pluralizer = new Pluralize.NET.Pluralizer();
+            var entity = modelBuilder.Model.GetEntityTypes();
+            foreach (var item in entity)
+            {
+                item.SetTableName(pluralizer.Pluralize(item.GetTableName()));
+            }
+        }
     }
 }

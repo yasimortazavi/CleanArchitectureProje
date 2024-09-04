@@ -1,8 +1,8 @@
-﻿using Devsharp.Data;
+﻿using Devsharp.Core.Domian;
+using Devsharp.Data;
 using Devsharp.Framework;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Devsharp.Core.Domain;
 
 namespace ShopProjectG1.Controllers
 {

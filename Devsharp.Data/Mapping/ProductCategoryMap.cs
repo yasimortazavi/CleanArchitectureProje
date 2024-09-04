@@ -11,7 +11,7 @@ namespace Devsharp.Data.Mapping
     {
         public void Configure(EntityTypeBuilder<ProductCategory> builder)
         {
-            builder.HasKey(p => new { p.ProductId, p.CategoryId });
+            builder.HasKey(p => new { p.ProductID, p.CategoryID });
         }
     }
 }

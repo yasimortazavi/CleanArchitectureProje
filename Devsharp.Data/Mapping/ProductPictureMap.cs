@@ -11,7 +11,7 @@ namespace Devsharp.Data.Mapping
     {
         public void Configure(EntityTypeBuilder<ProductPicture> builder)
         {
-            builder.HasKey(p => new { p.ProductId, p.PictureId });
+            builder.HasKey(p => new { p.ProductID, p.PictureID });
         }
     }
 }

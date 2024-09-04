@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Devsharp.Core.Domian;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Devsharp.Core.Domain;
 using System;
 using System.Collections.Generic;
 using System.Text;

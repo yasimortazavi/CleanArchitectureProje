@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Devsharp.Core.Interface;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -14,5 +15,7 @@ namespace Devsharp.Core.Domian
         public virtual Order Order { get; set; }
         public DateTime CreateOn { get; set; }
         public DateTime UpdateOn { get; set; }
+        public DateTime CreateDate { get ; set ; }
+        public DateTime EditDate { get; set; }
     }
 }
