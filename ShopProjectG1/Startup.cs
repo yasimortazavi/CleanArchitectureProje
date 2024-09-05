@@ -28,7 +28,12 @@ namespace ShopProjectG1
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<MyInterface, ClassB>();
+            //services.AddScoped<IApplcationDbContext, ApplicationDbContext>();
+            services.AddDbContext<IApplcationDbContext, ApplicationDbContext>(
+                (Options) =>
+            {
+                Options.UseSqlServer("Data Source=.;Initial Catalog=ShopWebApi;Integrated Security=true;");
+            }, optionsLifetime: ServiceLifetime.Scoped);
             services.AddControllers();
             //services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer("Data Source=.; Initial Catalog=shop;Integrated Security=True;"));
 

@@ -10,14 +10,17 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace Devsharp.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : DbContext, IApplcationDbContext
     {
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public ApplicationDbContext( DbContextOptions options) : base(options)
         {
-            optionsBuilder.UseSqlServer("Data Source=.; Initial Catalog=shop;Integrated Security=True;");
-
         }
+
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer("Data Source=.; Initial Catalog=shop;Integrated Security=True;");
+
+        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

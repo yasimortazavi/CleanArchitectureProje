@@ -9,16 +9,13 @@ namespace ShopProjectG1.Controllers
  
     public class CustomerController : DevsharpController
     {
-        ApplicationDbContext  DbContext = null;
-        //ClassA classA = null;
+
         #region Field
-        private readonly MyInterface _myInterface = null;
+        private readonly IApplcationDbContext _applcationDbContext;
         #endregion
-        public CustomerController(MyInterface myInterface)
+        public CustomerController(IApplcationDbContext applcationDbContext)
         {
-            DbContext = new ApplicationDbContext();
-            this._myInterface =  myInterface;
-            //classA = new ClassA();
+           this._applcationDbContext = applcationDbContext;
         }
 
         [HttpGet]
@@ -30,12 +27,8 @@ namespace ShopProjectG1.Controllers
         [HttpPost]
         public IActionResult Register()
         {
-           var result = _myInterface.Calc(10,20);
-
-            //Customer customer = new Customer();
-            //DbContext.Add(customer); 
-            //DbContext.Update(customer);
-            return Ok(result);
+           
+            return Ok();
         }
     }
 }
