@@ -6,8 +6,8 @@ namespace Devsharp.Core.Interface
 {
     public interface IDateEntity
     {
-         DateTime CreateDate { get; set; }
-         DateTime EditDate { get; set; }
+         DateTime CreateOn { get; set; }
+         DateTime UpdateOn { get; set; }
 
        
 

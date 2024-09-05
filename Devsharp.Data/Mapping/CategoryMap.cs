@@ -1,19 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Devsharp.Core.Domian;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Devsharp.Core.Domian;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Devsharp.Data.Mapping
+namespace Project.Data.Mapping
 {
     public class CategoryMap : IEntityTypeConfiguration<Category>
     {
-
+       
 
         public void Configure(EntityTypeBuilder<Category> builder)
         {
-          
+         
         }
     }
 }
