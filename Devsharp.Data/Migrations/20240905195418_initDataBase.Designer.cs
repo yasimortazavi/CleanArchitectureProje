@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Devsharp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240905194719_initDataBase")]
+    [Migration("20240905195418_initDataBase")]
     partial class initDataBase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

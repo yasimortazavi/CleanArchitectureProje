@@ -29,11 +29,16 @@ namespace ShopProjectG1
         public void ConfigureServices(IServiceCollection services)
         {
             //services.AddScoped<IApplcationDbContext, ApplicationDbContext>();
-            services.AddDbContext<IApplcationDbContext, ApplicationDbContext>(
-                (Options) =>
-            {
-                Options.UseSqlServer("Data Source=.;Initial Catalog=ShopWebApi;Integrated Security=true;");
-            }, optionsLifetime: ServiceLifetime.Scoped);
+            //services.AddDbContext<IApplcationDbContext, ApplicationDbContext>(
+            //    (Options) =>
+            //{
+            //    Options.UseSqlServer("Data Source=.;Initial Catalog=ShopWebApi;Integrated Security=true;");
+            //}, optionsLifetime: ServiceLifetime.Scoped);
+
+
+            services.AddDbContextPool<IApplcationDbContext, ApplicationDbContext>(options =>
+            options.UseSqlServer("Data Source=.;Initial Catalog=ShopG1;Integrated Security=true;")
+            , poolSize: 16);
             services.AddControllers();
             //services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer("Data Source=.; Initial Catalog=shop;Integrated Security=True;"));
 
