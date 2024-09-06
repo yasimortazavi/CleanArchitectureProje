@@ -11,11 +11,11 @@ namespace ShopProjectG1.Controllers
     {
 
         #region Field
-        private readonly IApplcationDbContext _applcationDbContext;
+        private readonly IRepository<Customer> _repositoryCustomer;
         #endregion
-        public CustomerController(IApplcationDbContext applcationDbContext)
+        public CustomerController(IRepository<Customer> repositoryCustomer)
         {
-           this._applcationDbContext = applcationDbContext;
+           this._repositoryCustomer = repositoryCustomer;
         }
 
         [HttpGet]
@@ -27,7 +27,7 @@ namespace ShopProjectG1.Controllers
         [HttpPost]
         public IActionResult Register()
         {
-           
+            _repositoryCustomer.Insert(new Customer() { });
             return Ok();
         }
     }
