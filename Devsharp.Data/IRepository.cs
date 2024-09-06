@@ -8,7 +8,7 @@ namespace Devsharp.Data
     public partial interface IRepository<TEntity> where TEntity : class
     {
 
-        TEntity GetById( object id);
+        TEntity GetById(params object[] ids);
 
         void Insert(TEntity entity);
 

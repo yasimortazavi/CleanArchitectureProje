@@ -27,9 +27,19 @@ namespace Devsharp.Data
             _context.SaveChanges();
         }
 
-        public TEntity GetById(object id)
+        public TEntity GetById(params object[] ids)
         {
-            throw new NotImplementedException();
+            return _context.Set<TEntity>().Find(ids);
+        }
+
+        public TEntity GetByIdAsNoTracking(params object[] ids)
+        {
+            var X = _context.Set<TEntity>().Find(ids);
+            if(X!=null)
+              this._context.Entry(X).State = Microsoft.EntityFrameworkCore.EntityState.Detached;
+
+            return X;
+         
         }
 
         public void Insert(TEntity entity)
