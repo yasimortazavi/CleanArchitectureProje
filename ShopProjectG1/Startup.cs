@@ -41,7 +41,7 @@ namespace ShopProjectG1
             , poolSize: 16);
             services.AddControllers();
             //services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer("Data Source=.; Initial Catalog=shop;Integrated Security=True;"));
-
+            services.AddScoped(typeof(IRepository<>), typeof(EFRepository<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

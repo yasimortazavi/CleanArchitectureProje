@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,14 +10,27 @@ namespace Devsharp.Data
     {
         #region Fields
         private readonly IApplcationDbContext _context = null;
+        private DbSet<TEntity> entities = null;
+        protected virtual DbSet<TEntity> Entities
+        {
+            get
+            { 
+                if(entities == null)
+                   entities = _context.Set<TEntity>();
+
+                return entities;
+            
+            }
+        
+        }
         #endregion
         public EFRepository(IApplcationDbContext context) 
         {
             this._context = context;
         }
-        public IQueryable<TEntity> Table => throw new NotImplementedException();
+        public IQueryable<TEntity> Table => Entities;
 
-        public IQueryable<TEntity> TableNoTracking => throw new NotImplementedException();
+        public IQueryable<TEntity> TableNoTracking => Entities.AsNoTracking();
 
         public void Delete(TEntity entity)
         {

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Devsharp.Core
 {
-    public class BaseRelation :IEntity,  IUserModifer
+    public class BaseRelation : Entity,  IUserModifer
     {
         public int CreateUser { get; set; }
         public int EditUser { get; set; }

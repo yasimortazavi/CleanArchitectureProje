@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Devsharp.Core
 {
-    public abstract class BaseEntity : IEntity, IDateEntity, IUserModifer
+    public abstract class BaseEntity : Entity, IDateEntity, IUserModifer
     {
         public int ID { get; set; }
         public DateTime CreateOn { get; set; }

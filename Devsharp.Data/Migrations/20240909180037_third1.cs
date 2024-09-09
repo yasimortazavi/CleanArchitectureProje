@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Devsharp.Data.Migrations
 {
-    public partial class initDataBase : Migration
+    public partial class third1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -18,18 +18,16 @@ namespace Devsharp.Data.Migrations
                     CreateUser = table.Column<int>(nullable: false),
                     EditUser = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: true),
-                    ParentId = table.Column<int>(nullable: false),
-                    ParentCategoryID = table.Column<int>(nullable: true)
+                    ParentId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Categories_Categories_ParentCategoryID",
-                        column: x => x.ParentCategoryID,
+                        name: "FK_Categories_Categories_ParentId",
+                        column: x => x.ParentId,
                         principalTable: "Categories",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "ID");
                 });
 
             migrationBuilder.CreateTable(
@@ -240,10 +238,15 @@ namespace Devsharp.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Categories_ParentCategoryID",
+            migrationBuilder.InsertData(
                 table: "Categories",
-                column: "ParentCategoryID");
+                columns: new[] { "ID", "CreateOn", "CreateUser", "EditUser", "Name", "ParentId", "UpdateOn" },
+                values: new object[] { 1, new DateTime(2024, 9, 9, 21, 30, 35, 758, DateTimeKind.Local).AddTicks(6904), 0, 0, "اصلی", 1, new DateTime(2024, 9, 9, 21, 30, 35, 760, DateTimeKind.Local).AddTicks(7088) });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Categories_ParentId",
+                table: "Categories",
+                column: "ParentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderItems_OrderID",

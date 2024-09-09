@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Devsharp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240905195418_initDataBase")]
-    partial class initDataBase
+    [Migration("20240909180037_third1")]
+    partial class third1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -42,9 +42,6 @@ namespace Devsharp.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ParentCategoryID")
-                        .HasColumnType("int");
-
                     b.Property<int>("ParentId")
                         .HasColumnType("int");
 
@@ -53,9 +50,21 @@ namespace Devsharp.Data.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("ParentCategoryID");
+                    b.HasIndex("ParentId");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            CreateOn = new DateTime(2024, 9, 9, 21, 30, 35, 758, DateTimeKind.Local).AddTicks(6904),
+                            CreateUser = 0,
+                            EditUser = 0,
+                            Name = "اصلی",
+                            ParentId = 1,
+                            UpdateOn = new DateTime(2024, 9, 9, 21, 30, 35, 760, DateTimeKind.Local).AddTicks(7088)
+                        });
                 });
 
             modelBuilder.Entity("Devsharp.Core.Domian.Customer", b =>
@@ -361,7 +370,9 @@ namespace Devsharp.Data.Migrations
                 {
                     b.HasOne("Devsharp.Core.Domian.Category", "ParentCategory")
                         .WithMany("Children")
-                        .HasForeignKey("ParentCategoryID");
+                        .HasForeignKey("ParentId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Devsharp.Core.Domian.Order", b =>

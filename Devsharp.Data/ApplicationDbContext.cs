@@ -35,13 +35,15 @@ namespace Devsharp.Data
 
         public override EntityEntry<TEntity> Update<TEntity>(TEntity entity) where TEntity : class
         {
+            var x = base.Update(entity);
             if (entity.GetType().GetInterfaces().Any(p => p.Name == "IDateEntity"))
             {
                 Entry((entity as IDateEntity).CreateOn).State = EntityState.Unchanged;
                 (entity as IDateEntity).UpdateOn = DateTime.Now;
+                this.Entry(entity).Property("CreateOn").IsModified = false;
             }
 
-            return base.Update(entity);
+            return x;
         }
 
            //public DbSet<Customer>Customers { get; set; }
