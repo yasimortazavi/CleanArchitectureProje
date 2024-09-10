@@ -1,6 +1,7 @@
 ﻿using Devsharp.Core.Domian;
 using Devsharp.Data;
 using Devsharp.Framework;
+using Devsharp.Framwork.DTOs;
 using Devsharp.Framwork.Extensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -8,8 +9,7 @@ using System.Linq;
 
 namespace ShopProjectG1.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
+ 
     public class CategoryController : DevsharpController
     {
         #region Fields
@@ -25,20 +25,39 @@ namespace ShopProjectG1.Controllers
         public IActionResult Get()
         {
             var _list = _repositoryCategory.TableNoTracking
-                .Select(p => new {
-                    p.Name,
-                    p.CreateOn,
-                    p.ParentId,
-                    parentName = p.ParentCategory.Name,
-                    p.ID
-                    ,
-                    p.UpdateOn,
-                    childCount = p.Children.Count,
-                    productCount = p.ProductCategories.Count,
-                    LocalCreateOn = p.CreateOn.ToPersian(),
-                    LocalUpdateOn = p.UpdateOn.ToPersian(),
-                });
+                 .Select(p => new CategoryDTO
+                 {
+                     CreateOn = p.CreateOn,
+                     ID = p.ID,
+                     Name = p.Name,
+                     ParentId = p.ParentId,
+                     ParentName = p.ParentCategory.Name,
+                     UpdateOn = p.UpdateOn,
+                     ChildCount = p.Children.Count,
+                     ProdcutCount = p.ProductCategories.Count,
+                     LocalCreateOn = p.CreateOn.ToPersian(),
+                     LocalUpdateOn = p.UpdateOn.ToPersian()
+                 });
             return Ok(_list);
+        }
+        [HttpGet("Find/{id}")]
+        public IActionResult Find(int id)
+        {
+            var result = _repositoryCategory.GetById(id);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+            CategoryDTO categoryDTO = new CategoryDTO();
+            categoryDTO.Name = result.Name;
+            categoryDTO.ID = result.ID;
+            categoryDTO.ParentName = result.ParentCategory.Name;
+            categoryDTO.ChildCount = result.Children.Count;
+            categoryDTO.ProdcutCount = result.ProductCategories.Count;  
+
+            return Ok(categoryDTO);
+        
         }
     }
 }
