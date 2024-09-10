@@ -38,6 +38,7 @@ namespace ShopProjectG1
 
             services.AddDbContextPool<IApplcationDbContext, ApplicationDbContext>(options =>
             options.UseSqlServer("Data Source=.;Initial Catalog=ShopG1;Integrated Security=true;")
+            .UseLazyLoadingProxies()
             , poolSize: 16);
             services.AddControllers();
             //services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer("Data Source=.; Initial Catalog=shop;Integrated Security=True;"));
