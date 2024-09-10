@@ -5,6 +5,7 @@ using Devsharp.Framwork.DTOs;
 using Devsharp.Framwork.Extensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace ShopProjectG1.Controllers
@@ -43,7 +44,8 @@ namespace ShopProjectG1.Controllers
         [HttpGet("Find/{id}")]
         public IActionResult Find(int id)
         {
-            var result = _repositoryCategory.GetById(id);
+            var result = _repositoryCategory.Table.Include(p => p.ProductCategories).SingleOrDefault(p => p.ID == id);
+            //var result = _repositoryCategory.GetById(id);
 
             if (result == null)
             {
