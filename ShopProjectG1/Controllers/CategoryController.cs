@@ -68,13 +68,34 @@ namespace ShopProjectG1.Controllers
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesDefaultResponseType]
         public IActionResult Register([FromForm] CategoryDTO model)
         {
-            if (model.ID)
+            if (model.ID != 0)
                 return BadRequest();
+            var category = model.ToEntity<Category>();
+            _repositoryCategory.Insert(category);
 
+            model.ID = category.ID;
             return CreatedAtAction("find", new { id = model.ID } , model);
+        }
+
+
+        [HttpPut]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
+        public IActionResult Update([FromForm] CategoryDTO model)
+        {
+            if (_repositoryCategory.GetByIdAsNoTracking(model.ID) == null)
+                return NotFound();
+
+            var category = model.ToEntity<Category>();
+            _repositoryCategory.Update(category);
+
+            return NoContent();
+        
         }
     }
 }

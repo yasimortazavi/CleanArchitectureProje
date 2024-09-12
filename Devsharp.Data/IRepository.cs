@@ -19,6 +19,6 @@ namespace Devsharp.Data
         IQueryable<TEntity> Table { get; }
 
         IQueryable<TEntity> TableNoTracking { get; }
-
+        TEntity GetByIdAsNoTracking(params object[] ids);
     }
 }
