@@ -87,14 +87,14 @@ namespace ShopProjectG1.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
-        public IActionResult Update([FromForm] CategoryDTO model)
+        public async Task<IActionResult> UpdateAsync([FromForm] CategoryDTO model)
         {
-            if (_repositoryCategory.GetByIdAsNoTracking(model.ID) == null)
+            if (await _repositoryCategory.GetByIdAsNoTrackingAsync(model.ID) == null)
                 return NotFound();
 
 
             var category = model.ToEntity<Category>();
-            _repositoryCategory.Update(category);
+            await _repositoryCategory.UpdateAsync(category);
 
             return NoContent();
         
