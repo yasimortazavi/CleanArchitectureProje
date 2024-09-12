@@ -71,12 +71,12 @@ namespace ShopProjectG1.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesDefaultResponseType]
-        public IActionResult Register([FromForm] CategoryDTO model)
+        public async  Task<IActionResult> RegisterAsync([FromForm] CategoryDTO model)
         {
             if (model.ID != 0)
                 return BadRequest();
             var category = model.ToEntity<Category>();
-            _repositoryCategory.Insert(category);
+            await _repositoryCategory.InsertAsync(category);
 
             model.ID = category.ID;
             return CreatedAtAction("find", new { id = model.ID } , model);
