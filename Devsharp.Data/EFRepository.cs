@@ -105,7 +105,14 @@ namespace Devsharp.Data
            await  _context.Set<TEntity>().AddAsync(entity);
            await  _context.SaveChangesAsync();
         }
+        public async Task UpdateAsync(TEntity entity)
+        {
+            if (entity == null)
+                throw new ArgumentNullException(nameof(entity));
 
+            _context.Set<TEntity>().Update(entity);
+            await  _context.SaveChangesAsync();
+        }
     }
 
 }
