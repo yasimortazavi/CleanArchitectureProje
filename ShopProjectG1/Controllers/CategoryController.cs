@@ -1,13 +1,14 @@
 ﻿using Devsharp.Core.Domian;
 using Devsharp.Data;
 using Devsharp.Framework;
+using Devsharp.Framework.Extensions;
 using Devsharp.Framwork.DTOs;
 using Devsharp.Framwork.Extensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
-
+using Mapster;
 namespace ShopProjectG1.Controllers
 {
  
@@ -42,21 +43,27 @@ namespace ShopProjectG1.Controllers
             return Ok(_list);
         }
         [HttpGet("Find/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public IActionResult Find(int id)
         {
-            var result = _repositoryCategory.Table.Include(p => p.ProductCategories).SingleOrDefault(p => p.ID == id);
-            //var result = _repositoryCategory.GetById(id);
+            //var result = _repositoryCategory.Table.Include(p => p.ProductCategories).SingleOrDefault(p => p.ID == id);
+            var category = _repositoryCategory.GetById(id);
 
-            if (result == null)
+            if (category == null)
             {
                 return NotFound();
             }
-            CategoryDTO categoryDTO = new CategoryDTO();
-            categoryDTO.Name = result.Name;
-            categoryDTO.ID = result.ID;
-            categoryDTO.ParentName = result.ParentCategory.Name;
-            categoryDTO.ChildCount = result.Children.Count;
-            categoryDTO.ProdcutCount = result.ProductCategories.Count;  
+
+            var categoryDTO = category.ToDTO<CategoryDTO>();
+
+
+            //var categoryDTO = category.Adapt<CategoryDTO>();
+            //CategoryDTO categoryDTO = new CategoryDTO();
+            //categoryDTO.Name = result.Name;
+            //categoryDTO.ID = result.ID;
+
 
             return Ok(categoryDTO);
         
