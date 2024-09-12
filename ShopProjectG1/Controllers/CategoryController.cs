@@ -91,11 +91,29 @@ namespace ShopProjectG1.Controllers
             if (_repositoryCategory.GetByIdAsNoTracking(model.ID) == null)
                 return NotFound();
 
+
             var category = model.ToEntity<Category>();
             _repositoryCategory.Update(category);
 
             return NoContent();
         
+        }
+
+        [HttpDelete]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
+        public IActionResult Remove(int id)
+        {
+
+            var category = _repositoryCategory.GetById(ids: id);
+            if (category == null)
+                NotFound();
+
+            _repositoryCategory.Delete(category);
+
+            return Ok();
+
         }
     }
 }
