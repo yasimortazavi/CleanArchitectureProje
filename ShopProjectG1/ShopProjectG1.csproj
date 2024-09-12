@@ -22,6 +22,7 @@
 	  <ProjectReference Include="..\Devsharp.Core\Devsharp.Core.csproj" />
 	  <ProjectReference Include="..\Devsharp.Data\Devsharp.Data.csproj" />
 	  <ProjectReference Include="..\Devsharp.Framework\Devsharp.Framework.csproj" />
+	  <ProjectReference Include="..\Devsharp.Services\Devsharp.Services.csproj" />
 	</ItemGroup>
 
 </Project>

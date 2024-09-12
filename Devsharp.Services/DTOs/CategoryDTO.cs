@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Devsharp.Framwork.DTOs
+namespace Devsharp.Services.DTOs
 {
     public class CategoryDTO:BaseEntityDTO
     {

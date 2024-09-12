@@ -42,7 +42,7 @@ namespace Devsharp.Data
             _context.SaveChanges();
         }
 
-        public TEntity GetByIdAsync(params object[] ids)
+        public TEntity GetById(params object[] ids)
         {
             return _context.Set<TEntity>().Find(ids);
         }

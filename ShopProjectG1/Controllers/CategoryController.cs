@@ -1,15 +1,15 @@
 ﻿using Devsharp.Core.Domian;
 using Devsharp.Data;
 using Devsharp.Framework;
-using Devsharp.Framework.Extensions;
-using Devsharp.Framwork.DTOs;
-using Devsharp.Framwork.Extensions;
+using Devsharp.Core.Extensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using Mapster;
 using System.Threading.Tasks;
+using Devsharp.Services.DTOs;
+using Devsharp.Services.Extensions;
 namespace ShopProjectG1.Controllers
 {
  

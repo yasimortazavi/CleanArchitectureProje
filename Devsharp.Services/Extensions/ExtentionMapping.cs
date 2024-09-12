@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Devsharp.Framwork.DTOs;
+using Devsharp.Core.Extensions;
 using Devsharp.Core;
 using Mapster;
 using Devsharp.Core.Interface;
-using Devsharp.Framwork.Extensions;
 using Devsharp.Core.Domian;
+using Devsharp.Services.DTOs;
 
 
-namespace Devsharp.Framework.Extensions
+namespace Devsharp.Services.Extensions
 {
     public static class ExtentionMapping
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Globalization;
 
-namespace Devsharp.Framwork.Extensions
+namespace Devsharp.Core.Extensions
 {
     public static class PersianDateExtension
     {

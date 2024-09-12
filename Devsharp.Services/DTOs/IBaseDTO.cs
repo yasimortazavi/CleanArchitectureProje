@@ -1,4 +1,4 @@
-﻿namespace Devsharp.Framwork.DTOs
+﻿namespace Devsharp.Services.DTOs
 {
     public interface IBaseDTO
     {
