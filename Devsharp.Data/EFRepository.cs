@@ -83,5 +83,9 @@ namespace Devsharp.Data
             _context.Set<TEntity>().Remove(entity);
           await  _context.SaveChangesAsync();
         }
+        public async Task<TEntity> GetByIdAsync(params object[] ids)
+        {
+            return await _context.Set<TEntity>().FindAsync(ids);
+        }
     }
 }
