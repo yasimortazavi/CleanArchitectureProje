@@ -104,14 +104,14 @@ namespace ShopProjectG1.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
-        public IActionResult Remove(int id)
+        public async Task<IActionResult> RemoveAsync(int id)
         {
 
-            var category = _repositoryCategory.GetByIdAsync(ids: id);
+            var category = await _repositoryCategory.GetByIdAsync(ids: id);
             if (category == null)
                 NotFound();
 
-            _repositoryCategory.Delete(category);
+            await _repositoryCategory.DeleteAsync(category);
 
             return Ok();
 
