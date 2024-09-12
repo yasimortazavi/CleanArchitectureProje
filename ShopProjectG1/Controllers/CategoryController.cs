@@ -10,38 +10,26 @@ using Mapster;
 using System.Threading.Tasks;
 using Devsharp.Services.DTOs;
 using Devsharp.Services.Extensions;
+using Devsharp.Services.Catalog;
 namespace ShopProjectG1.Controllers
 {
  
     public class CategoryController : DevsharpController
     {
         #region Fields
-        private readonly IRepository<Category> _repositoryCategory = null;
+        private readonly ICategoryService _categoryService = null;
+
+        public CategoryController(ICategoryService categoryService)
+        {
+            _categoryService = categoryService;
+        }
         #endregion
 
-        public CategoryController(IRepository<Category> repositoryCategory)
-        {
-            this._repositoryCategory = repositoryCategory;
-        }
 
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            var _list = _repositoryCategory.TableNoTracking
-                 .Select(p => new CategoryDTO
-                 {
-                     CreateOn = p.CreateOn,
-                     ID = p.ID,
-                     Name = p.Name,
-                     ParentId = p.ParentId,
-                     ParentName = p.ParentCategory.Name,
-                     UpdateOn = p.UpdateOn,
-                     ChildCount = p.Children.Count,
-                     ProdcutCount = p.ProductCategories.Count,
-                     LocalCreateOn = p.CreateOn.ToPersian(),
-                     LocalUpdateOn = p.UpdateOn.ToPersian()
-                 });
-            return Ok(_list);
+            return Ok(await _categoryService.SearchCategoryAsync());
         }
 
 
@@ -51,17 +39,12 @@ namespace ShopProjectG1.Controllers
         [ProducesDefaultResponseType]
         public async Task<IActionResult> FindAsync(int id)
         {
-            //var result = _repositoryCategory.Table.Include(p => p.ProductCategories).SingleOrDefault(p => p.ID == id);
-            var category = await _repositoryCategory.GetByIdAsync(id);
 
-            if (category == null)
+            var categoryDTO = await _categoryService.SearchCategoriyByIdAsync(id);
+            if (categoryDTO == null)
             {
                 return NotFound();
             }
-
-            var categoryDTO = category.ToDTO<CategoryDTO>();
-
-
 
             return Ok(categoryDTO);
         
@@ -75,10 +58,8 @@ namespace ShopProjectG1.Controllers
         {
             if (model.ID != 0)
                 return BadRequest();
-            var category = model.ToEntity<Category>();
-            await _repositoryCategory.InsertAsync(category);
 
-            model.ID = category.ID;
+            await _categoryService.RegisterCategoryAsync(model);
             return CreatedAtAction("find", new { id = model.ID } , model);
         }
 
@@ -89,12 +70,10 @@ namespace ShopProjectG1.Controllers
         [ProducesDefaultResponseType]
         public async Task<IActionResult> UpdateAsync([FromForm] CategoryDTO model)
         {
-            if (await _repositoryCategory.GetByIdAsNoTrackingAsync(model.ID) == null)
+            if (await _categoryService.CheckExists(model.ID))
                 return NotFound();
 
-
-            var category = model.ToEntity<Category>();
-            await _repositoryCategory.UpdateAsync(category);
+            await _categoryService.UpdateCategoryAsync(model);
 
             return NoContent();
         
@@ -107,11 +86,11 @@ namespace ShopProjectG1.Controllers
         public async Task<IActionResult> RemoveAsync(int id)
         {
 
-            var category = await _repositoryCategory.GetByIdAsync(ids: id);
-            if (category == null)
+            var categoryDTO = await _categoryService.SearchCategoriyByIdAsync(id);
+            if (categoryDTO == null)
                 NotFound();
 
-            await _repositoryCategory.DeleteAsync(category);
+            await _categoryService.RemoveCategoryAsync(categoryDTO);
 
             return Ok();
 
