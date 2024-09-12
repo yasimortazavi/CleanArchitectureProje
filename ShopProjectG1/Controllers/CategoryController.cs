@@ -42,6 +42,8 @@ namespace ShopProjectG1.Controllers
                  });
             return Ok(_list);
         }
+
+
         [HttpGet("Find/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -62,6 +64,17 @@ namespace ShopProjectG1.Controllers
 
             return Ok(categoryDTO);
         
+        }
+
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesDefaultResponseType]
+        public IActionResult Register([FromForm] CategoryDTO model)
+        {
+            if (model.ID)
+                return BadRequest();
+
+            return CreatedAtAction("find", new { id = model.ID } , model);
         }
     }
 }
