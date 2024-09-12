@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace Devsharp.Data
 {
@@ -10,6 +12,7 @@ namespace Devsharp.Data
     {
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
         int SaveChanges();
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
         EntityEntry Entry(object entity);
     }
 

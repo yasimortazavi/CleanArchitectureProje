@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Devsharp.Data
 {
@@ -72,6 +73,15 @@ namespace Devsharp.Data
 
             _context.Set<TEntity>().Update(entity);
             _context.SaveChanges();
+        }
+
+        public async Task DeleteAsync(TEntity entity)
+        {
+            if (entity == null)
+                throw new ArgumentNullException(nameof(entity));
+
+            _context.Set<TEntity>().Remove(entity);
+          await  _context.SaveChangesAsync();
         }
     }
 }
