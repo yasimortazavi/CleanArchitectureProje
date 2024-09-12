@@ -87,5 +87,25 @@ namespace Devsharp.Data
         {
             return await _context.Set<TEntity>().FindAsync(ids);
         }
+
+        public async Task<TEntity> GetByIdAsNoTrackingAsync(params object[] ids)
+        {
+            var X =  await _context.Set<TEntity>().FindAsync(ids);
+            if (X != null)
+                 this._context.Entry(X).State = Microsoft.EntityFrameworkCore.EntityState.Detached;
+
+            return X;
+
+        }
+        public async Task InsertAsync(TEntity entity)
+        {
+            if (entity == null)
+                throw new ArgumentNullException(nameof(entity));
+
+           await  _context.Set<TEntity>().AddAsync(entity);
+           await  _context.SaveChangesAsync();
+        }
+
     }
+
 }
