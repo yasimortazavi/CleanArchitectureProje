@@ -59,11 +59,6 @@ namespace ShopProjectG1.Controllers
             var categoryDTO = category.ToDTO<CategoryDTO>();
 
 
-            //var categoryDTO = category.Adapt<CategoryDTO>();
-            //CategoryDTO categoryDTO = new CategoryDTO();
-            //categoryDTO.Name = result.Name;
-            //categoryDTO.ID = result.ID;
-
 
             return Ok(categoryDTO);
         

@@ -13,6 +13,17 @@ namespace Devsharp.Framework.Extensions
 {
     public static class ExtentionMapping
     {
+        public static TEntity ToEntity<TEntity>(this BaseDto dto) where TEntity : Entity
+        {
+            if (dto.GetType().GetInterface("IDateDTO") != null)
+            {
+                TypeAdapterConfig<IDateDTO, TEntity>.NewConfig().Ignore("CreateOn", "UpdateOn", "LocalCreateOn", "LocalUpdateOn");
+
+            }
+            var entity = dto.Adapt<TEntity>();
+            return entity;
+        
+        }
 
         public static TDTO ToDTO<TDTO>(this Entity entity) where TDTO : BaseDto
         {
@@ -26,9 +37,15 @@ namespace Devsharp.Framework.Extensions
             { 
                 Category category = entity as Category;
                 CategoryDTO categoryDTO = Dto as CategoryDTO;
-                categoryDTO.ParentName = category.ParentCategory.Name;
-                categoryDTO.ChildCount = category.Children.Count;
-                categoryDTO.ProdcutCount = category.ProductCategories.Count;
+
+                if (category?.ParentCategory != null) 
+                    categoryDTO.ParentName = category?.ParentCategory.Name;
+
+                if (category?.Children != null)
+                    categoryDTO.ChildCount = category?.Children.Count;
+
+                if (category?.ProductCategories != null)
+                    categoryDTO.ProdcutCount = category?.ProductCategories.Count;
 
 
             }
