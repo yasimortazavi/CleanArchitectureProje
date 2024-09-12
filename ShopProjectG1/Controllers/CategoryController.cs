@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using Mapster;
+using System.Threading.Tasks;
 namespace ShopProjectG1.Controllers
 {
  
@@ -48,10 +49,10 @@ namespace ShopProjectG1.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
-        public IActionResult Find(int id)
+        public async Task<IActionResult> FindAsync(int id)
         {
             //var result = _repositoryCategory.Table.Include(p => p.ProductCategories).SingleOrDefault(p => p.ID == id);
-            var category = _repositoryCategory.GetById(id);
+            var category = await _repositoryCategory.GetByIdAsync(id);
 
             if (category == null)
             {
@@ -106,7 +107,7 @@ namespace ShopProjectG1.Controllers
         public IActionResult Remove(int id)
         {
 
-            var category = _repositoryCategory.GetById(ids: id);
+            var category = _repositoryCategory.GetByIdAsync(ids: id);
             if (category == null)
                 NotFound();
 
